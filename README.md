@@ -8,7 +8,7 @@
 
 - 以Canvas为一个UI单元,以栈形式管理UI，入栈出栈回调清晰，引导使用者多用Canvas拆分界面，避免不必要的重绘，提高性能。
 
-- 自带Tween动画模块，一行代码实现动画，比DotTween LeanTween等四大Tween工具更加灵活轻便。
+- 自带Tween动画模块，一行代码实现动画，比DotTween、LeanTween等四大Tween工具更加灵活轻便。
 
 - 更多功能不断完善中。。。
 
