@@ -148,7 +148,7 @@ FirstActor.lua继承LuaBehaviour:
     local lobbyUI = classPath:new()
 ```
     
-#### 关于UI栈的  
+#### 关于UI栈  
 
 1. 特性
 - 继承BaseUI后，UI自动受UI栈管理。即每生成一个UI界面都会自动压入UI栈，Destroy后自动出栈，默认情况下除栈顶之外的其他UI自动隐藏,只需发送命令打开新UI即可，前一个UI无需多加代码关闭，栈顶的UI关闭后，新的栈顶UI会自动显示，无需多写代码激活。如果不希望关闭UI后自动显示前一个UI,可在打开新UI命令前，先将当前UI进行Destroy即可
