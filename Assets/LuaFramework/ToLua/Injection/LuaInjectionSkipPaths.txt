@@ -1,7 +1,0 @@
-Assets/LuaFramework/ToLua/Core/
-Assets/LuaFramework/ToLua/Injection/
-Assets/LuaFramework/ToLua/Misc/
-Assets/LuaFramework/ToLua/Reflection/
-Assets/LuaFramework/Plugins/
-Assets/LuaFramework/ToLua/BaseType/
-Assets/LuaFramework/Source/Generate/
