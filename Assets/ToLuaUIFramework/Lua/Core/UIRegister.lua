@@ -6,7 +6,7 @@ local hadRegister = false
 
 function UIRegister.init()
     if not hadRegister then
-        local uilist = require "UIRegisterList"
+        local uilist = require "Common.UIRegisterList"
         for key, value in pairs(uilist) do
             uiRequires[key] = value
         end
@@ -22,7 +22,11 @@ function UIRegister.register()
             local ui = uis[_uiID]
             if not ui then
                 ui = uiRequires[_uiID]:new()
-                ui.transform:GetComponent("LuaBehaviour"):SetUIID(_uiID)
+                if ui.transform then
+                    ui.transform:GetComponent("LuaBehaviour"):SetUIID(_uiID)
+                else
+                    ui.uiID = _uiID
+                end
                 uis[_uiID] = ui
             else
                 ui:createGameObject()

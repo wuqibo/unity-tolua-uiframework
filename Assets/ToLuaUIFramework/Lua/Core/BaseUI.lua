@@ -25,6 +25,9 @@ function BaseUI:createGameObject(parent)
         prefabPath,
         parent,
         function(go, isSingletonActiveCallback)
+            if self.uiID then
+                go:GetComponent("LuaBehaviour"):SetUIID(self.uiID)
+            end
             self:onGameObjectSpawn(go, isSingletonActiveCallback)
         end,
         self:keepActive(),
