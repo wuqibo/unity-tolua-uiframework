@@ -8,4 +8,8 @@ Packages
 Temp
 Assembly-CSharp.csproj
 Assembly-CSharp-Editor.csproj
+Assembly-CSharp-Editor-firstpass.csproj
+Assembly-CSharp-firstpass.csproj
+DOTween.Modules.csproj
 lua-framework.sln
+unity-tolua-uiframework.sln
