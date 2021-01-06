@@ -25,7 +25,7 @@ namespace ToLuaUIFramework
             return str;
         }
     }
-    public class MessageManager
+    public class MessageCenter
     {
         private static Dictionary<MsgEnum, List<Action<BaseMsg>>> eventsBuffer = new Dictionary<MsgEnum, List<Action<BaseMsg>>>();
 

@@ -6,7 +6,7 @@ public class ToLuaUIFramework_MessageManagerWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(ToLuaUIFramework.MessageManager), typeof(System.Object));
+		L.BeginClass(typeof(ToLuaUIFramework.MessageCenter), typeof(System.Object));
 		L.RegFunction("Add", Add);
 		L.RegFunction("Remove", Remove);
 		L.RegFunction("Clear", Clear);
@@ -26,7 +26,7 @@ public class ToLuaUIFramework_MessageManagerWrap
 
 			if (count == 0)
 			{
-				ToLuaUIFramework.MessageManager obj = new ToLuaUIFramework.MessageManager();
+				ToLuaUIFramework.MessageCenter obj = new ToLuaUIFramework.MessageCenter();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
@@ -49,7 +49,7 @@ public class ToLuaUIFramework_MessageManagerWrap
 			ToLua.CheckArgsCount(L, 2);
 			ToLuaUIFramework.MsgEnum arg0 = (ToLuaUIFramework.MsgEnum)ToLua.CheckObject(L, 1, typeof(ToLuaUIFramework.MsgEnum));
 			System.Action<ToLuaUIFramework.BaseMsg> arg1 = (System.Action<ToLuaUIFramework.BaseMsg>)ToLua.CheckDelegate<System.Action<ToLuaUIFramework.BaseMsg>>(L, 2);
-			ToLuaUIFramework.MessageManager.Add(arg0, arg1);
+			ToLuaUIFramework.MessageCenter.Add(arg0, arg1);
 			return 0;
 		}
 		catch (Exception e)
@@ -66,7 +66,7 @@ public class ToLuaUIFramework_MessageManagerWrap
 			ToLua.CheckArgsCount(L, 2);
 			ToLuaUIFramework.MsgEnum arg0 = (ToLuaUIFramework.MsgEnum)ToLua.CheckObject(L, 1, typeof(ToLuaUIFramework.MsgEnum));
 			System.Action<ToLuaUIFramework.BaseMsg> arg1 = (System.Action<ToLuaUIFramework.BaseMsg>)ToLua.CheckDelegate<System.Action<ToLuaUIFramework.BaseMsg>>(L, 2);
-			ToLuaUIFramework.MessageManager.Remove(arg0, arg1);
+			ToLuaUIFramework.MessageCenter.Remove(arg0, arg1);
 			return 0;
 		}
 		catch (Exception e)
@@ -82,7 +82,7 @@ public class ToLuaUIFramework_MessageManagerWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			ToLuaUIFramework.MsgEnum arg0 = (ToLuaUIFramework.MsgEnum)ToLua.CheckObject(L, 1, typeof(ToLuaUIFramework.MsgEnum));
-			ToLuaUIFramework.MessageManager.Clear(arg0);
+			ToLuaUIFramework.MessageCenter.Clear(arg0);
 			return 0;
 		}
 		catch (Exception e)
@@ -97,7 +97,7 @@ public class ToLuaUIFramework_MessageManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 0);
-			ToLuaUIFramework.MessageManager.ClearAll();
+			ToLuaUIFramework.MessageCenter.ClearAll();
 			return 0;
 		}
 		catch (Exception e)
@@ -117,14 +117,14 @@ public class ToLuaUIFramework_MessageManagerWrap
 			{
 				ToLuaUIFramework.MsgEnum arg0 = (ToLuaUIFramework.MsgEnum)ToLua.CheckObject(L, 1, typeof(ToLuaUIFramework.MsgEnum));
 				ToLuaUIFramework.BaseMsg arg1 = (ToLuaUIFramework.BaseMsg)ToLua.ToObject(L, 2);
-				ToLuaUIFramework.MessageManager.Dispatch(arg0, arg1);
+				ToLuaUIFramework.MessageCenter.Dispatch(arg0, arg1);
 				return 0;
 			}
 			else if (TypeChecker.CheckTypes<ToLuaUIFramework.MsgEnum>(L, 1) && TypeChecker.CheckParamsType<object>(L, 2, count - 1))
 			{
 				ToLuaUIFramework.MsgEnum arg0 = (ToLuaUIFramework.MsgEnum)ToLua.CheckObject(L, 1, typeof(ToLuaUIFramework.MsgEnum));
 				object[] arg1 = ToLua.ToParamsObject(L, 2, count - 1);
-				ToLuaUIFramework.MessageManager.Dispatch(arg0, arg1);
+				ToLuaUIFramework.MessageCenter.Dispatch(arg0, arg1);
 				return 0;
 			}
 			else

@@ -6,7 +6,7 @@ function Shop:prefabPath()
 end
 
 function Shop:onAwake()
-    local btnBack = self.transform:Find("Panel/BtnBack")
+    local btnBack = self.transform:Find("BtnBack")
     btnBack:OnClick(
         function()
             Destroy(self.gameObject)

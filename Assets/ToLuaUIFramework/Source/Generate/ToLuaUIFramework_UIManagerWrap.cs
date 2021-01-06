@@ -12,6 +12,7 @@ public class ToLuaUIFramework_UIManagerWrap
 		L.RegFunction("ResumeUI", ResumeUI);
 		L.RegFunction("ClearAllUI", ClearAllUI);
 		L.RegFunction("OnUIDestroy", OnUIDestroy);
+		L.RegFunction("RefreshStack", RefreshStack);
 		L.RegFunction("__eq", op_Equality);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("instance", get_instance, set_instance);
@@ -152,6 +153,22 @@ public class ToLuaUIFramework_UIManagerWrap
 			ToLuaUIFramework.UIManager obj = (ToLuaUIFramework.UIManager)ToLua.CheckObject<ToLuaUIFramework.UIManager>(L, 1);
 			ToLuaUIFramework.LuaBehaviour arg0 = (ToLuaUIFramework.LuaBehaviour)ToLua.CheckObject<ToLuaUIFramework.LuaBehaviour>(L, 2);
 			obj.OnUIDestroy(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int RefreshStack(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			ToLuaUIFramework.UIManager obj = (ToLuaUIFramework.UIManager)ToLua.CheckObject<ToLuaUIFramework.UIManager>(L, 1);
+			obj.RefreshStack();
 			return 0;
 		}
 		catch (Exception e)

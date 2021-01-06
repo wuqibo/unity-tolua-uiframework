@@ -35,6 +35,10 @@ namespace ToLuaUIFramework
                 LuaBehaviour luaBehaviour = uiStack[i];
                 if (luaBehaviour.prefabPath.Equals(prefabPath))
                 {
+                    if (luaBehaviour.transform.parent != parent)
+                    {
+                        luaBehaviour.transform.SetParent(parent, false);
+                    }
                     if (i < uiStack.Count - 1)
                     {
                         uiStack.RemoveAt(i);
@@ -107,8 +111,10 @@ namespace ToLuaUIFramework
             RefreshStack();
         }
 
-        #region 内部方法
-        void RefreshStack()
+        /// <summary>
+        /// 也可以由Lua调用刷新，用于Lua动态给Canvas指定Camera后重新刷新调用
+        /// </summary>
+        public void RefreshStack()
         {
             currVisibleUIList.Clear();
             for (int i = 0; i < uiStack.Count; i++)
@@ -134,27 +140,18 @@ namespace ToLuaUIFramework
                     currVisibleUIList.Add(behaviour);
                 }
             }
-            //临时改变层级
             for (int i = 0; i < currVisibleUIList.Count; i++)
             {
-                if (i > 0)
+                LuaBehaviour luaBehaviour = currVisibleUIList[i];
+                if (i > 0 && currVisibleUIList[i - 1].IsSetedOrder)
                 {
-                    LuaBehaviour currBehaviour = currVisibleUIList[i];
-                    LuaBehaviour underBehaviour = currVisibleUIList[i - 1];
-                    if (currBehaviour.canvas && underBehaviour.canvas && currBehaviour.canvas.renderMode == underBehaviour.canvas.renderMode)
-                    {
-                        if (currBehaviour.canvas.renderMode == RenderMode.ScreenSpaceOverlay)
-                        {
-                            currBehaviour.canvas.sortingOrder = underBehaviour.canvas.sortingOrder + 1;
-                        }
-                        else if (currBehaviour.canvas.renderMode == RenderMode.ScreenSpaceCamera)
-                        {
-                            currBehaviour.canvas.worldCamera.depth = underBehaviour.canvas.worldCamera.depth + 1f;
-                        }
-                    }
+                    luaBehaviour.AddCanvas();
                 }
+                luaBehaviour.SetOrders(i);
             }
         }
+
+        #region 内部方法
 
         /// <summary>
         /// 当前层上面的层全是浮动层

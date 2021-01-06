@@ -5,6 +5,10 @@ function Fight:prefabPath()
     return "Prefabs/Battle/UI/Fight"
 end
 
+function Fight:parentName()
+    return nil
+end
+
 function Fight:onAwake()
     local btnBack = self.transform:Find("Panel/BtnBack")
     btnBack:OnClick(

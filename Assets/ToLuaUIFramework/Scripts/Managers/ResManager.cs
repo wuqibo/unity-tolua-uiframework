@@ -43,6 +43,7 @@ namespace ToLuaUIFramework
                 }
                 else
                 {
+                    MessageCenter.Dispatch(MsgEnum.ABLoadingFinish);
                     CommandController.Instance.Execute(CommandEnum.StartLuaMain);
                 }
                 return true;
@@ -57,8 +58,8 @@ namespace ToLuaUIFramework
         /// </summary>
         IEnumerator CheckAndDownloadAssetBundle()
         {
-            MessageManager.Dispatch(MsgEnum.ABLoadingBegin);
-            MessageManager.Dispatch(MsgEnum.ABLoadingProgress, 0);
+            MessageCenter.Dispatch(MsgEnum.ABLoadingBegin);
+            MessageCenter.Dispatch(MsgEnum.ABLoadingProgress, 0);
             //读取本地MD5文件
             localFiles = new Dictionary<string, string>();
             string localFilesPath = LuaConst.localABPath + "/" + LuaConst.MD5FileName;
@@ -120,7 +121,7 @@ namespace ToLuaUIFramework
                 if (resRequest.error != null)
                 {
                     Debug.LogError(" [ " + url + " ] " + resRequest.error);
-                    MessageManager.Dispatch(MsgEnum.ABLoadingError, resRequest.error);
+                    MessageCenter.Dispatch(MsgEnum.ABLoadingError, resRequest.error);
                 }
                 string savePath = LuaConst.localABPath + "/" + item.Key;
                 string saveDir = savePath.Substring(0, savePath.LastIndexOf("/"));
@@ -130,14 +131,13 @@ namespace ToLuaUIFramework
                 loadedCount++;
                 float progress = loadedCount / (float)maxCount;
                 Debug.Log("下载进度：" + progress);
-                MessageManager.Dispatch(MsgEnum.ABLoadingProgress, progress);
+                MessageCenter.Dispatch(MsgEnum.ABLoadingProgress, progress);
             }
             UpdateLocalFiles();
-            MessageManager.Dispatch(MsgEnum.ABLoadingProgress, 1);
-            MessageManager.Dispatch(MsgEnum.ABLoadingFinish, "A", "B");
+            MessageCenter.Dispatch(MsgEnum.ABLoadingProgress, 1);
             yield return new WaitForEndOfFrame();
 
-            MessageManager.Dispatch(MsgEnum.ResInited);
+            MessageCenter.Dispatch(MsgEnum.ABLoadingFinish);
             CommandController.Instance.Execute(CommandEnum.StartLuaMain);
         }
 

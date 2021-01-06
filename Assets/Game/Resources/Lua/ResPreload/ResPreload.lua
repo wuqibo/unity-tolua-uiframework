@@ -6,7 +6,7 @@ function ResPreload:prefabPath()
 end
 
 function ResPreload:onAwake()
-    self.slider = self.transform:Find("Panel/Slider"):GetComponent("Slider")
+    self.slider = self.transform:Find("Slider"):GetComponent("Slider")
     self.slider.value = 10
 end
 

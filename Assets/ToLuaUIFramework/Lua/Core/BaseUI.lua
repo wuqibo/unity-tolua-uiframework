@@ -12,8 +12,16 @@ function BaseUI:isFloat()
     return false
 end
 
-function BaseUI:createGameObject(parent)
+function BaseUI:createGameObject()
     local prefabPath = self:prefabPath()
+    local parent = nil
+    local parentName = self:parentName()
+    if parentName and parentName ~= "" then
+        local parentGo = GameObject.Find(parentName)
+        if parentGo then
+            parent = parentGo.transform
+        end
+    end
     UIManager:SpawnUI(
         prefabPath,
         parent,
@@ -25,6 +33,10 @@ function BaseUI:createGameObject(parent)
         self:destroyABAfterSpawn(),
         self:destroyABAfterAllSpawnDestroy()
     )
+end
+
+function BaseUI:parentName()
+    return "MainCanvas"
 end
 
 return BaseUI

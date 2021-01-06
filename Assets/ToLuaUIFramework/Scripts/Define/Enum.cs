@@ -52,11 +52,5 @@
         /// </summary>
         ABLoadingFinish,
 
-        /// <summary>
-        /// 本地资源初始化完成
-        /// </summary>
-        ResInited
-
-
     }
 }

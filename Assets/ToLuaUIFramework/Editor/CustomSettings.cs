@@ -169,7 +169,7 @@ public static class CustomSettings
         _GT(typeof(UnityEngine.UI.ScrollRect)),
 
         //Custom
-        _GT(typeof(MessageManager)),
+        _GT(typeof(MessageCenter)),
         _GT(typeof(LuaManager)),
         _GT(typeof(ResManager)),
         _GT(typeof(UIManager)),

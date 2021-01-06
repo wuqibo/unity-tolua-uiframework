@@ -1,11 +1,19 @@
 local LuaBehaviour = class("LuaBehaviour")
 
-function LuaBehaviour:ctor(...)
-    self:createGameObject(...)
+function LuaBehaviour:ctor()
+    self:createGameObject()
 end
 
-function LuaBehaviour:createGameObject(parent)
+function LuaBehaviour:createGameObject()
     local prefabPath = self:prefabPath()
+    local parent = nil
+    local parentName = self:parentName()
+    if parentName and parentName ~= "" then
+        local parentGo = GameObject.Find(parentName)
+        if parentGo then
+            parent = parentGo.transform
+        end
+    end
     ResManager:SpawnPrefab(
         prefabPath,
         parent,
@@ -30,6 +38,11 @@ end
 
 --由子类重写来定义
 function LuaBehaviour:prefabPath()
+    return ""
+end
+
+--由子类重写来定义
+function LuaBehaviour:parentName()
     return ""
 end
 

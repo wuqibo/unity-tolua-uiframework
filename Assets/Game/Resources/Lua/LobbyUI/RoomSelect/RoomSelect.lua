@@ -6,7 +6,7 @@ function RoomSelect:prefabPath()
 end
 
 function RoomSelect:onAwake()
-    local btnBack = self.transform:Find("Panel/BtnBack")
+    local btnBack = self.transform:Find("BtnBack")
     btnBack:OnClick(
         function()
             Destroy(self.gameObject)
@@ -14,7 +14,7 @@ function RoomSelect:onAwake()
     )
 
     for i = 1, 3, 1 do
-        local btnRoom = self.transform:Find("Panel/BtnRoom" .. i)
+        local btnRoom = self.transform:Find("BtnRoom" .. i)
         btnRoom:OnClick(
             i,
             function(param)

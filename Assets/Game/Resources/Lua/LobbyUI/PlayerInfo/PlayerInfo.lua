@@ -18,6 +18,13 @@ function PlayerInfo:onAwake()
             Destroy(self.gameObject)
         end
     )
+
+    local btnAlert = self.transform:Find("Dialog/BtnAlert")
+    btnAlert:OnClick(
+        function()
+            CommandManager.execute(CommandID.OpenUI, UIID.Alert)
+        end
+    )
 end
 
 function PlayerInfo:onEnable()

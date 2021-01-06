@@ -6,7 +6,7 @@ function Login:prefabPath()
 end
 
 function Login:onAwake()
-    local btnStart = self.transform:Find("Panel/BtnStart")
+    local btnStart = self.transform:Find("BtnStart")
     btnStart:OnClick(
         function()
             CommandManager.execute(CommandID.OpenUI, UIID.LobbyMain)

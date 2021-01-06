@@ -16,9 +16,7 @@ public class ToLuaUIFramework_LuaBehaviourWrap
 		L.RegVar("keepActive", get_keepActive, set_keepActive);
 		L.RegVar("isFloat", get_isFloat, set_isFloat);
 		L.RegVar("destroyABAfterAllSpawnDestroy", get_destroyABAfterAllSpawnDestroy, set_destroyABAfterAllSpawnDestroy);
-		L.RegVar("canvas", get_canvas, set_canvas);
-		L.RegVar("sortingOrder", get_sortingOrder, set_sortingOrder);
-		L.RegVar("cameraDepth", get_cameraDepth, set_cameraDepth);
+		L.RegVar("sortObjects", get_sortObjects, set_sortObjects);
 		L.EndClass();
 	}
 
@@ -170,7 +168,7 @@ public class ToLuaUIFramework_LuaBehaviourWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_canvas(IntPtr L)
+	static int get_sortObjects(IntPtr L)
 	{
 		object o = null;
 
@@ -178,51 +176,13 @@ public class ToLuaUIFramework_LuaBehaviourWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			ToLuaUIFramework.LuaBehaviour obj = (ToLuaUIFramework.LuaBehaviour)o;
-			UnityEngine.Canvas ret = obj.canvas;
+			System.Collections.Generic.List<ToLuaUIFramework.LuaBehaviour.SortObject> ret = obj.sortObjects;
 			ToLua.PushSealed(L, ret);
 			return 1;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index canvas on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_sortingOrder(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			ToLuaUIFramework.LuaBehaviour obj = (ToLuaUIFramework.LuaBehaviour)o;
-			int ret = obj.sortingOrder;
-			LuaDLL.lua_pushinteger(L, ret);
-			return 1;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index sortingOrder on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_cameraDepth(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			ToLuaUIFramework.LuaBehaviour obj = (ToLuaUIFramework.LuaBehaviour)o;
-			float ret = obj.cameraDepth;
-			LuaDLL.lua_pushnumber(L, ret);
-			return 1;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index cameraDepth on a nil value");
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index sortObjects on a nil value");
 		}
 	}
 
@@ -322,7 +282,7 @@ public class ToLuaUIFramework_LuaBehaviourWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int set_canvas(IntPtr L)
+	static int set_sortObjects(IntPtr L)
 	{
 		object o = null;
 
@@ -330,51 +290,13 @@ public class ToLuaUIFramework_LuaBehaviourWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			ToLuaUIFramework.LuaBehaviour obj = (ToLuaUIFramework.LuaBehaviour)o;
-			UnityEngine.Canvas arg0 = (UnityEngine.Canvas)ToLua.CheckObject(L, 2, typeof(UnityEngine.Canvas));
-			obj.canvas = arg0;
+			System.Collections.Generic.List<ToLuaUIFramework.LuaBehaviour.SortObject> arg0 = (System.Collections.Generic.List<ToLuaUIFramework.LuaBehaviour.SortObject>)ToLua.CheckObject(L, 2, typeof(System.Collections.Generic.List<ToLuaUIFramework.LuaBehaviour.SortObject>));
+			obj.sortObjects = arg0;
 			return 0;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index canvas on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int set_sortingOrder(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			ToLuaUIFramework.LuaBehaviour obj = (ToLuaUIFramework.LuaBehaviour)o;
-			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
-			obj.sortingOrder = arg0;
-			return 0;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index sortingOrder on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int set_cameraDepth(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			ToLuaUIFramework.LuaBehaviour obj = (ToLuaUIFramework.LuaBehaviour)o;
-			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
-			obj.cameraDepth = arg0;
-			return 0;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index cameraDepth on a nil value");
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index sortObjects on a nil value");
 		}
 	}
 }

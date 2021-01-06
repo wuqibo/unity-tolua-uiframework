@@ -57,7 +57,14 @@ FirstActor.lua继承LuaBehaviour:
    return FirstUI  
 ```
 
-5.  实现经典熟悉的回调，以及按钮绑定方法、DOTween使用  
+5. 选择性重写的方法：指定创建的父级。不重写或重写返回nil或""，则物体创建在跟场景，指定父级名称后框架用 GameObject.Find("").transform 查找当做父级  
+```
+function FirstUI:parentName()
+    return ""
+end
+```
+
+6.  实现经典熟悉的生命周期函数，以及按钮绑定方法、DOTween使用  
 ```
    local BaseUI = require "Core.BaseUI"  
    local FirstUI = class("FirstUI", BaseUI)  
@@ -104,7 +111,7 @@ FirstActor.lua继承LuaBehaviour:
    return FirstUI  
 ```
 
-6.  Update方法的实现。出于性能考虑，Update方法需要手动注册和注销： 
+7.  Update方法的实现。出于性能考虑，Update方法需要手动注册和注销： 
 ```
    local BaseUI = require "Core.BaseUI"  
    local FirstUI = class("FirstUI", BaseUI)  
@@ -131,16 +138,16 @@ FirstActor.lua继承LuaBehaviour:
    return FirstUI  
 ```
 
-7.  注册UI,以实现通过发送命令展示UI，高度解耦：  
+8.  注册UI,以实现通过发送命令展示UI，高度解耦：  
     按照Demo定义UIID,然后添加到UIRegisterList.lua内的列表里即可  
 
-8.  通过命令启动第一个UI  
+9.  通过命令启动第一个UI  
     打开ToLuaUIFramework/Lua/Main.lua脚本，替换第19行开启UI命令里的UIID成你的UIID即可  
 ```
     CommandManager.execute(CommandID.OpenUI, UIID.您定义的UIID)  
 ```
 
-9.  不通过发送消息开启UI的方法（即创建预设体的方法）：
+10.  不通过发送消息开启UI的方法（即创建预设体的方法）：
 ```
     local classPath = require "LobbyUI.Lobby.LobbyMain"
     local lobbyUI = classPath:new(parent) 
@@ -166,6 +173,10 @@ FirstActor.lua继承LuaBehaviour:
     function FirstUI:isFloat()  
        return true
     end  
+```
+3. 刷新UI栈：当创建UI后又动态在onAwake里指定Canvas的Camera，或者因为动态添加特效需要调整层级的，必须用以下方法刷新一次UI栈，以便框架重新排列sortingOrder的关系。  
+```
+    UIManager:RefreshStack() 
 ```
 
 #### AssetBundle的操作
