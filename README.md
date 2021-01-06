@@ -57,7 +57,8 @@ FirstActor.lua继承LuaBehaviour:
    return FirstUI  
 ```
 
-5. 选择性重写的方法：指定创建的父级。不重写或重写返回nil或""，则物体创建在跟场景，指定父级名称后框架用 GameObject.Find("").transform 查找当做父级  
+5. 选择性重写的方法：指定创建的父级。不重写或重写返回nil或""，则物体创建在跟场景，指定父级名称后，框架用 GameObject.Find("").transform 查找节点当做父级。
+   第二种指定父级的方式见第10点。用本方法指定优先级更高。当返回nil或""时，第10点的方法才有效。    
 ```
 function FirstUI:parentName()
     return ""
@@ -147,7 +148,7 @@ end
     CommandManager.execute(CommandID.OpenUI, UIID.您定义的UIID)  
 ```
 
-10.  不通过发送消息开启UI的方法（即创建预设体的方法）：
+10.  不通过发送消息开启UI的方法（即常规创建预设体的方法）如下：（如果按第5点用函数指定了有效的父级名称，则在此new()传入的父级无效。）
 ```
     local classPath = require "LobbyUI.Lobby.LobbyMain"
     local lobbyUI = classPath:new(parent) 

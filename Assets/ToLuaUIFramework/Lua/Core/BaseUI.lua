@@ -12,9 +12,8 @@ function BaseUI:isFloat()
     return false
 end
 
-function BaseUI:createGameObject()
+function BaseUI:createGameObject(parent)
     local prefabPath = self:prefabPath()
-    local parent = nil
     local parentName = self:parentName()
     if parentName and parentName ~= "" then
         local parentGo = GameObject.Find(parentName)

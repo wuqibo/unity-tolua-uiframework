@@ -1,12 +1,11 @@
 local LuaBehaviour = class("LuaBehaviour")
 
-function LuaBehaviour:ctor()
-    self:createGameObject()
+function LuaBehaviour:ctor(...)
+    self:createGameObject(...)
 end
 
-function LuaBehaviour:createGameObject()
+function LuaBehaviour:createGameObject(parent)
     local prefabPath = self:prefabPath()
-    local parent = nil
     local parentName = self:parentName()
     if parentName and parentName ~= "" then
         local parentGo = GameObject.Find(parentName)
