@@ -43,8 +43,8 @@ namespace ToLuaUIFramework
                     {
                         uiStack.RemoveAt(i);
                         uiStack.Add(luaBehaviour);
-                        RefreshStack();
                     }
+                    RefreshStack();
                     luaBehaviour.keepActive = keepActive;
                     luaBehaviour.isFloat = isFloat;
                     luaBehaviour.destroyABAfterAllSpawnDestroy = destroyABAfterAllSpawnDestroy;
